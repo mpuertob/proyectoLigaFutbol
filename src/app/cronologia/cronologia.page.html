@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cronologia del Partido</ion-title>
+  </ion-toolbar>
+  <ion-button (click)="volver()">Volver</ion-button>
+</ion-header>
+
+<ion-content>
+
+  <ion-title>
+    Local:
+  </ion-title>
+  <ion-item class="ion-text-center">
+    Goles: {{cronologia.golesCasa}} -->
+    Minutos: [{{cronologia.minutosCasa}}]</ion-item>
+
+  <ion-title>Visitante:</ion-title>
+  <ion-item class="ion-text-center">
+    Goles: {{cronologia.golesFuera}} -->
+    Minutos: [{{cronologia.minutosFuera}}]</ion-item>
+
+</ion-content>

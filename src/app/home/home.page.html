@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-segment>
+      <ion-segment-button value="jornada" (click)="visible=true">
+        JORNADA
+      </ion-segment-button>
+      <ion-segment-button value="clasificacion" (click)="visible=!visible">CLASIFICACION</ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-text-center">
+  <ion-content *ngIf="visible">
+    <ion-label>Jornada número: {{this.numeroJornada}} </ion-label>
+    <ion-label *ngIf="this.numeroJornada<=(this.limiteDeJornadas/2)"> Partidos de Ida:</ion-label>
+    <ion-label *ngIf="this.numeroJornada>(this.limiteDeJornadas/2)"> Partidos de Vuelta:</ion-label>
+    <ion-card *ngFor="let partido of resultado" (click)="mostrarCronologiaDatos(partido)">
+      <ion-card-header>
+        <ion-label>{{partido.local}} : {{partido.visitante}}</ion-label>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col>
+            {{partido.golesLocal}} : {{partido.golesVisitante}}
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-content>
+  <ion-content *ngIf="!visible">
+    <ion-item>
+      <ion-title>Clasificacion de la Jornada {{this.numeroJornada}}</ion-title>
+    </ion-item>
+  </ion-content>
+  <ion-footer>
+    <ion-item expand="full">
+      <ion-button slot="start" size="small" (click)="jornadaAnterior()">Anterior</ion-button>
+      <ion-button slot="end" size="small" (click)="jornadaSiguiente()">Siguiente</ion-button>
+    </ion-item>
+  </ion-footer>
