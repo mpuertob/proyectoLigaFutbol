@@ -1,22 +1,35 @@
-<ion-header>
+<ion-header class="ion-text-center">
   <ion-toolbar>
+    <ion-icon name="clipboard-outline"></ion-icon>
     <ion-title>Cronologia del Partido</ion-title>
   </ion-toolbar>
   <ion-button (click)="volver()">Volver</ion-button>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-text-center">
 
-  <ion-title>
-    Local:
-  </ion-title>
-  <ion-item class="ion-text-center">
-    Goles: {{cronologia.golesCasa}} -->
-    Minutos: [{{cronologia.minutosCasa}}]</ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-title>Local:</ion-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-icon name="football-outline"></ion-icon>
+      Goles: {{cronologia.golesCasa}} -->
+      <ion-icon name="time-outline"></ion-icon>
+      Minutos: [{{cronologia.minutosCasa}}]
+    </ion-card-content>
+  </ion-card>
 
-  <ion-title>Visitante:</ion-title>
-  <ion-item class="ion-text-center">
-    Goles: {{cronologia.golesFuera}} -->
-    Minutos: [{{cronologia.minutosFuera}}]</ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-title>Visitante:</ion-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-icon name="football-outline"></ion-icon>
+      Goles: {{cronologia.golesFuera}} -->
+      <ion-icon name="time-outline"></ion-icon>
+      Minutos: [{{cronologia.minutosFuera}}]
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

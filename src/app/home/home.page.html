@@ -2,9 +2,14 @@
   <ion-toolbar>
     <ion-segment>
       <ion-segment-button value="jornada" (click)="visible=true">
+        <ion-icon name="football-outline"></ion-icon>
         JORNADA
       </ion-segment-button>
-      <ion-segment-button value="clasificacion" (click)="visible=!visible">CLASIFICACION</ion-segment-button>
+      <ion-segment-button value="clasificacion" (click)="visible=false">
+        <ion-icon name="trophy-outline"></ion-icon>
+        CLASIFICACION
+      </ion-segment-button>
+
     </ion-segment>
   </ion-toolbar>
 </ion-header>
@@ -21,6 +26,8 @@
       <ion-card-content>
         <ion-row>
           <ion-col>
+            <ion-icon name="walk-outline"></ion-icon>
+            <ion-icon name="football-outline"></ion-icon>
             {{partido.golesLocal}} : {{partido.golesVisitante}}
           </ion-col>
         </ion-row>

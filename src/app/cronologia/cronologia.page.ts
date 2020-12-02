@@ -14,6 +14,7 @@ export class CronologiaPage implements OnInit {
       this.cronologia = this.route.getCurrentNavigation().extras.state.cronologia;
     });
   }
+
   volver() {
     this.route.navigate([".."]);
   }
