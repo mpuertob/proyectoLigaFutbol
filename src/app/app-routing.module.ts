@@ -20,6 +20,10 @@ const routes: Routes = [
         (m) => m.CronologiaPageModule
       ),
   },
+  {
+    path: 'fecha',
+    loadChildren: () => import('./fecha/fecha.module').then( m => m.FechaPageModule)
+  },
 ];
 
 @NgModule({
