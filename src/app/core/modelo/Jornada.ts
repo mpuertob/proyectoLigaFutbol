@@ -54,7 +54,7 @@ export class Jornada {
   }
   public generarNumeroAleatorio(maximo: number, minimo: number): number {
     let aleatorio: number = Number.parseInt(
-      (Math.random() * (maximo - minimo) + minimo).toFixed(0)
+      Number(Math.random() * (maximo - minimo) + minimo).toFixed(0)
     );
     return aleatorio;
   }
