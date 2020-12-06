@@ -16,7 +16,7 @@
 
 <ion-content [fullscreen]="true" class="ion-text-center">
   <ion-content *ngIf="visible">
-    <ion-label>Jornada número: {{this.numeroJornada}} </ion-label>
+    <ion-label>Jornada número: {{this.numeroJornada}}. Fecha: {{obtenerFechaConcreta()}}</ion-label>
     <ion-label *ngIf="this.numeroJornada<=(this.limiteDeJornadas/2)"> Partidos de Ida:</ion-label>
     <ion-label *ngIf="this.numeroJornada>(this.limiteDeJornadas/2)"> Partidos de Vuelta:</ion-label>
     <ion-card *ngFor="let partido of resultado" (click)="mostrarCronologiaDatos(partido)">

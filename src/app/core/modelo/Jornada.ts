@@ -1,3 +1,5 @@
+import { Fecha } from "./Fecha";
+import { FechaService } from "./Fecha/fecha.service";
 import { Partido } from "./Partido";
 
 export class Jornada {
@@ -17,7 +19,11 @@ export class Jornada {
     "Rotulianos",
     "Francesanos",
   ];
-  constructor() {}
+  public fechas: Array<Fecha>;
+  constructor(private servidorFecha: FechaService) {
+    this.servidorFecha = new FechaService();
+    this.fechas = servidorFecha.fechas;
+  }
   public generarJornada(
     numeroJornada: number,
     limiteDeJornadas: number
@@ -103,5 +109,8 @@ export class Jornada {
   }
   public set nombresEquipoB(nombres: Array<String>) {
     this._nombresEquipoB = nombres;
+  }
+  public obtenerFecha(numero: number): Fecha {
+    return this.fechas[numero];
   }
 }

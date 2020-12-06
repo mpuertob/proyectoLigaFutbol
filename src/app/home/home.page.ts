@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { NavigationExtras, Router } from "@angular/router";
 import { AlertController } from "@ionic/angular";
 import { Cronologia } from "../core/modelo/Cronologia";
+import { FechaService } from "../core/modelo/Fecha/fecha.service";
 import { Jornada } from "../core/modelo/Jornada";
 import { Partido } from "../core/modelo/Partido";
 
@@ -15,14 +16,18 @@ export class HomePage {
   numeroJornada: number = 1;
   limiteDeJornadas = 18;
   cronologia: Cronologia;
-  jornada: Jornada = new Jornada();
+  jornada: Jornada = new Jornada(this.servidorFecha);
   resultado = this.jornada.generarJornada(
     this.numeroJornada,
     this.limiteDeJornadas
   );
   listaJornadas: Map<number, Jornada> = new Map<number, Jornada>();
 
-  constructor(private aler: AlertController, private route: Router) {}
+  constructor(
+    private aler: AlertController,
+    private route: Router,
+    private servidorFecha: FechaService
+  ) {}
 
   jornadaSiguiente() {
     this.listaJornadas.set(this.numeroJornada, this.jornada);
@@ -40,7 +45,7 @@ export class HomePage {
   jornadaNuevaConfiguracion() {
     let nombresEquipoA = this.jornada.nombresEquipoA;
     let nombresEquipoB = this.jornada.nombresEquipoB;
-    this.jornada = new Jornada();
+    this.jornada = new Jornada(this.servidorFecha);
     this.jornada.nombresEquipoA = nombresEquipoA;
     this.jornada.nombresEquipoB = nombresEquipoB;
     this.resultado = this.jornada.generarJornada(
@@ -64,5 +69,8 @@ export class HomePage {
       },
     };
     this.route.navigate(["cronologia"], extrasDeNavegacion);
+  }
+  obtenerFechaConcreta() {
+    return this.jornada.obtenerFecha(this.numeroJornada - 1).toString();
   }
 }
