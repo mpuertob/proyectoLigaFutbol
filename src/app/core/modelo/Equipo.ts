@@ -1,11 +1,9 @@
 export class Equipo {
-  private _nombre: String;
-  private _puntos: number;
-  private _golesFavor: number;
-  private _golesContra: number;
-  private _posicion: number;
-
-  constructor() {}
+  private _puntos: number = 0;
+  private _golesFavor: number = 0;
+  private _golesContra: number = 0;
+  private _posicion: number = 0;
+  constructor(private _nombre: String) {}
 
   public get nombre() {
     return this._nombre;
@@ -19,19 +17,21 @@ export class Equipo {
   public get golesFavor() {
     return this._golesFavor;
   }
-  public set golesFavor(numero: number) {
-    this._golesFavor = numero;
-  }
+
   public get golesContra() {
     return this._golesContra;
   }
-  public set golesContra(numero: number) {
-    this._golesContra = numero;
-  }
+
   public get posicion() {
     return this._posicion;
   }
   public set posicion(numero: number) {
     this._posicion = numero;
+  }
+  public aumentarGolesFavor(goles) {
+    this._golesFavor += goles;
+  }
+  public aumentarGolesContra(goles) {
+    this._golesContra += goles;
   }
 }

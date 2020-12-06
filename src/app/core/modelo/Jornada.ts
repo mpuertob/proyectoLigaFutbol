@@ -1,49 +1,38 @@
+import { Equipo } from "./Equipo";
+import { EquiposFutbolService } from "./equipos/equipos-futbol.service";
 import { Fecha } from "./Fecha";
 import { FechaService } from "./Fecha/fecha.service";
 import { Partido } from "./Partido";
 
 export class Jornada {
-  private numeroPartidos = 5;
   private _listaPartidos: Array<Partido> = [];
-  public _nombresEquipoA: Array<String> = [
-    "Victorianos",
-    "Villa Arriba",
-    "Villanos",
-    "Chiclanos",
-    "Castellanos",
-  ];
-  public _nombresEquipoB: Array<String> = [
-    "Perderianos",
-    "Villa Abajo",
-    "Tiranos",
-    "Rotulianos",
-    "Francesanos",
-  ];
+  public _nombresEquipoA: Array<String> = [];
+  private numeroPartidos = 5;
+  public _nombresEquipoB: Array<String> = [];
+  public listaEquipos: Map<Number, Equipo> = new Map<Number, Equipo>();
   public fechas: Array<Fecha>;
-  constructor(private servidorFecha: FechaService) {
+  constructor(
+    private servidorFecha: FechaService,
+    private equiposFutbol: EquiposFutbolService
+  ) {
     this.servidorFecha = new FechaService();
     this.fechas = servidorFecha.fechas;
+    this._nombresEquipoA = this.equiposFutbol.nombresEquipoA;
+    this._nombresEquipoB = this.equiposFutbol.nombresEquipoB;
+    this.listaEquipos = this.equiposFutbol.listaEquipos;
   }
   public generarJornada(
     numeroJornada: number,
     limiteDeJornadas: number
   ): Array<Partido> {
     if (numeroJornada > limiteDeJornadas / 2) {
-      for (let i = 0; i < this.numeroPartidos; i++) {
-        let partido: Partido = this.generarPartido(
-          this._nombresEquipoB,
-          this._nombresEquipoA,
-          i
-        );
+      for (let i = 1; i <= this.numeroPartidos; i++) {
+        let partido: Partido = this.generarPartido(i);
         this._listaPartidos.push(partido);
       }
     } else {
-      for (let i = 0; i < this.numeroPartidos; i++) {
-        let partido: Partido = this.generarPartido(
-          this._nombresEquipoA,
-          this._nombresEquipoB,
-          i
-        );
+      for (let i = 1; i <= this.numeroPartidos; i++) {
+        let partido: Partido = this.generarPartido(i);
         this._listaPartidos.push(partido);
       }
     }
@@ -74,29 +63,32 @@ export class Jornada {
   public get listaPartidos() {
     return this._listaPartidos;
   }
-  private generarPartido(
-    local: String[],
-    visitante: String[],
-    indice: number
-  ): Partido {
-    let nombreLocal: String = local[indice];
-    let nombreVisitante: String = visitante[indice];
+  private generarPartido(indice: number): Partido {
+    let equipoLocal: Equipo = this.listaEquipos.get(indice);
+    let equipoVisitante: Equipo = this.listaEquipos.get(
+      indice + this._nombresEquipoA.length
+    );
     let golesLocal: number = this.generarNumeroAleatorio(0, 7);
+    equipoLocal.aumentarGolesFavor(golesLocal);
+    equipoVisitante.aumentarGolesContra(golesLocal);
     let minutosGolesLocal: Array<number> = this.generarMinutosAleatorios(
       golesLocal
     );
     let golesVisitante: number = this.generarNumeroAleatorio(0, 7);
+    equipoLocal.aumentarGolesContra(golesVisitante);
+    equipoVisitante.aumentarGolesFavor(golesVisitante);
     let minutosGolesVisitante: Array<number> = this.generarMinutosAleatorios(
       golesVisitante
     );
-    return new Partido(
-      nombreLocal,
-      nombreVisitante,
+    let partido: Partido = new Partido(
+      equipoLocal,
+      equipoVisitante,
       golesLocal,
-      minutosGolesLocal,
       golesVisitante,
+      minutosGolesLocal,
       minutosGolesVisitante
     );
+    return partido;
   }
   public get nombresEquipoA() {
     return this._nombresEquipoA;
