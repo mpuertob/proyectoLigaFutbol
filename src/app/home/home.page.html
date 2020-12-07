@@ -35,10 +35,22 @@
     </ion-card>
 
   </ion-content>
-  <ion-content *ngIf="!visible">
-    <ion-item>
-      <ion-title>Clasificacion de la Jornada {{this.numeroJornada}}</ion-title>
-    </ion-item>
+  <ion-content *ngIf="!visible" class="ion-text-center">
+
+    <ion-label>Clasificacion de la Jornada {{this.numeroJornada}}</ion-label>
+
+    <ion-row class="tabla">
+      <ion-col class="tabla">Posicion</ion-col>
+      <ion-col class="tabla">Equipo</ion-col>
+      <ion-col class="tabla">Puntos</ion-col>
+      <ion-col class="tabla">GolesFavor</ion-col>
+      <ion-col class="tabla">GolesContra</ion-col>
+    </ion-row>
+
+
+
+
+
   </ion-content>
   <ion-footer>
     <ion-item expand="full">
