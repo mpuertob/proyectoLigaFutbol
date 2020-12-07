@@ -22,21 +22,14 @@ export class Clasificacion {
     for (let i = 0; i < this.listaEquiposArray.length; i++) {
       console.log(this.listaEquiposArray[i].nombre);
       console.log("Puntos de este equipo: " + this.listaEquiposArray[i].puntos);
-      listaPuntosAscendente.push(Number(this.listaEquiposArray[i].puntos));
+      listaPuntosAscendente.push(this.listaEquiposArray[i].puntos);
     }
     listaPuntosAscendente = listaPuntosAscendente.sort((a, b) => a - b);
-    // listaPuntosDescendente.push(listaPuntosAscendente[9]);
-    // listaPuntosDescendente.push(listaPuntosAscendente[8]);
-    // listaPuntosDescendente.push(listaPuntosAscendente[7]);
-    // listaPuntosDescendente.push(listaPuntosAscendente[6]);
-    // listaPuntosDescendente.push(listaPuntosAscendente[5]);
-    // listaPuntosDescendente.push(listaPuntosAscendente[4]);
-    // listaPuntosDescendente.push(listaPuntosAscendente[3]);
-    // listaPuntosDescendente.push(listaPuntosAscendente[2]);
-    // listaPuntosDescendente.push(listaPuntosAscendente[1]);
-    // listaPuntosDescendente.push(listaPuntosAscendente[0]);
-    // console.log("Ascendente: " + listaPuntosAscendente);
-    // console.log("Descendente: " + listaPuntosDescendente);
+    for (let i = listaPuntosAscendente.length - 1; i >= 0; i--) {
+      listaPuntosDescendente.push(listaPuntosAscendente[i]);
+    }
+    console.log("Ascendente: " + listaPuntosAscendente);
+    console.log("Descendente: " + listaPuntosDescendente);
     // let listaEquiposOrdenados: Equipo[] = [];
     // let bandera = true;
     // do {
