@@ -7,7 +7,8 @@ export class Clasificacion {
   constructor(private equiposFutbol: EquiposFutbolService) {
     this.listaEquipos = this.equiposFutbol.listaEquipos;
     this.rellenarArrayEquipos();
-    this.ordenarPorPuntos();
+    this.ordenarEquipos();
+    this.establecerPosicionesEquipos();
   }
   rellenarArrayEquipos() {
     for (let i = 1; i <= this.listaEquipos.size; i++) {
@@ -15,18 +16,21 @@ export class Clasificacion {
       this.listaEquiposArray.push(equipo);
     }
   }
-  ordenarPorPuntos() {
-    let listaPuntos: number[] = [];
+  ordenarEquipos() {
+    this.listaEquiposArray = this.listaEquiposArray.sort(function (a, b) {
+      if (b.puntos == a.puntos) {
+        return b.golesFavor - a.golesFavor;
+      }
+      if (b.puntos == a.puntos && b.golesFavor == a.golesFavor) {
+        return a.golesContra - b.golesContra;
+      }
+      return b.puntos - a.puntos;
+    });
+  }
+
+  private establecerPosicionesEquipos() {
     for (let i = 0; i < this.listaEquiposArray.length; i++) {
-      listaPuntos.push(this.listaEquiposArray[i].puntos);
+      this.listaEquiposArray[i].posicion = i + 1;
     }
-
-    listaPuntos = listaPuntos.sort((a, b) => a - b);
-    listaPuntos = listaPuntos.reverse();
-
-    console.log("Descendente: " + listaPuntos);
-    let listaEquiposOrdenado: Equipo[] = [];
-
-    console.log("Longitud: " + listaEquiposOrdenado.length);
   }
 }
