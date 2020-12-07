@@ -49,6 +49,7 @@ export class HomePage {
         this.resultado = this.jornada.listaPartidos;
       }
     }
+    this.cambiarClasificacion();
     this.jornada.mostrarResultadosJornada();
   }
   jornadaNuevaConfiguracion() {
@@ -70,6 +71,7 @@ export class HomePage {
     } else {
       this.resultado = this.listaJornadas.get(this.numeroJornada).listaPartidos;
     }
+    this.cambiarClasificacion();
   }
   async mostrarCronologiaDatos(evento: Partido) {
     this.cronologia = new Cronologia(evento);
@@ -84,7 +86,6 @@ export class HomePage {
     return this.jornada.obtenerFecha(this.numeroJornada - 1).toString();
   }
   cambiarClasificacion() {
-    this.visible = false;
     this.clasificacion = new Clasificacion(this.equiposFutbol);
   }
 }
