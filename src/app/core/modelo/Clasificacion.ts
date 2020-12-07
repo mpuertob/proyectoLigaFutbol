@@ -10,6 +10,10 @@ export class Clasificacion {
     this.ordenarEquipos();
     this.establecerPosicionesEquipos();
   }
+  public configurarClasificacion() {
+    this.ordenarEquipos();
+    this.establecerPosicionesEquipos();
+  }
   private rellenarArrayEquipos() {
     for (let i = 1; i <= this.listaEquipos.size; i++) {
       let equipo = this.listaEquipos.get(i);

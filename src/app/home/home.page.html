@@ -40,11 +40,24 @@
     <ion-label>Clasificacion de la Jornada {{this.numeroJornada}}</ion-label>
 
     <ion-row class="tabla">
-      <ion-col class="tabla">Posicion</ion-col>
-      <ion-col class="tabla">Equipo</ion-col>
-      <ion-col class="tabla">Puntos</ion-col>
-      <ion-col class="tabla">GolesFavor</ion-col>
-      <ion-col class="tabla">GolesContra</ion-col>
+      <ion-col class="tabla">
+        <ion-icon name="podium-outline"></ion-icon>Posicion
+
+      </ion-col>
+      <ion-col class="tabla">
+        <ion-icon name="happy-outline"></ion-icon>Equipo
+      </ion-col>
+      <ion-col class="tabla">
+        <ion-icon name="calculator-outline"></ion-icon>Puntos
+      </ion-col>
+      <ion-col class="tabla">
+        <ion-icon name="football-outline"></ion-icon>
+        <ion-icon name="arrow-up-outline"></ion-icon>GolesFavor
+      </ion-col>
+      <ion-col class="tabla">
+        <ion-icon name="football-outline"></ion-icon>
+        <ion-icon name="arrow-down-outline"></ion-icon>GolesContra
+      </ion-col>
     </ion-row>
 
     <ion-row *ngFor="let equipo of clasificacion.listaEquiposArray">
@@ -55,12 +68,19 @@
       <ion-col class="tabla">{{equipo.golesContra}}</ion-col>
     </ion-row>
 
-
+    <ion-label>
+      <ion-label></ion-label>
+      <ion-icon name="trophy-sharp"></ion-icon>Ganador de esta jornada: {{clasificacion.listaEquiposArray[0].nombre}}
+    </ion-label>
 
   </ion-content>
   <ion-footer>
     <ion-item expand="full">
-      <ion-button slot="start" size="small" (click)="jornadaAnterior()">Anterior</ion-button>
-      <ion-button slot="end" size="small" (click)="jornadaSiguiente()">Siguiente</ion-button>
+      <ion-button slot="start" size="small" (click)="jornadaAnterior()">
+        <ion-icon name="arrow-back-outline"></ion-icon>Anterior
+      </ion-button>
+      <ion-button slot="end" size="small" (click)="jornadaSiguiente()">Siguiente<ion-icon name="arrow-forward-outline">
+        </ion-icon>
+      </ion-button>
     </ion-item>
   </ion-footer>
