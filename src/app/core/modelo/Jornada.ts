@@ -49,7 +49,7 @@ export class Jornada {
   }
   public generarNumeroAleatorio(maximo: number, minimo: number): number {
     let aleatorio: number = Number.parseInt(
-      Number(Math.random() * (maximo - minimo) + minimo).toFixed(0)
+      (Math.random() * (maximo - minimo) + minimo).toFixed(0)
     );
     return aleatorio;
   }
@@ -64,8 +64,8 @@ export class Jornada {
     return this._listaPartidos;
   }
   private generarPartido(indice: number): Partido {
-    let equipoLocal: Equipo = this.listaEquipos.get(indice);
-    let equipoVisitante: Equipo = this.listaEquipos.get(
+    let equipoLocal: Equipo = this.equiposFutbol.listaEquipos.get(indice);
+    let equipoVisitante: Equipo = this.equiposFutbol.listaEquipos.get(
       indice + this._nombresEquipoA.length
     );
     let golesLocal: number = this.generarNumeroAleatorio(0, 7);
@@ -77,8 +77,29 @@ export class Jornada {
     let golesVisitante: number = this.generarNumeroAleatorio(0, 7);
     equipoLocal.aumentarGolesContra(golesVisitante);
     equipoVisitante.aumentarGolesFavor(golesVisitante);
+    if (golesLocal > golesVisitante) {
+      equipoLocal.aumentarPuntos(3);
+    } else if (golesLocal == golesVisitante) {
+      equipoLocal.aumentarPuntos(1);
+      equipoVisitante.aumentarPuntos(1);
+    } else if (golesVisitante > golesLocal) {
+      equipoVisitante.aumentarPuntos(3);
+    }
     let minutosGolesVisitante: Array<number> = this.generarMinutosAleatorios(
       golesVisitante
+    );
+    console.log("EMPEZAMOS EL PARTIDO");
+    console.log(
+      "Este partido es de: " +
+        equipoLocal.nombre +
+        " vs " +
+        equipoVisitante.nombre
+    );
+    console.log("Goles equipo Local: " + equipoLocal.golesFavor);
+    console.log("Goles contra equipo Local: " + equipoLocal.golesContra);
+    console.log("Goles equipo Visitante: " + equipoVisitante.golesFavor);
+    console.log(
+      "Goles contra equipo Visitante: " + equipoVisitante.golesContra
     );
     let partido: Partido = new Partido(
       equipoLocal,
@@ -104,5 +125,14 @@ export class Jornada {
   }
   public obtenerFecha(numero: number): Fecha {
     return this.fechas[numero];
+  }
+  public mostrarResultadosJornada() {
+    for (let i = 1; i <= this.equiposFutbol.listaEquipos.size; i++) {
+      let equipo: Equipo = this.equiposFutbol.listaEquipos.get(i);
+      console.log("Soy el equipo: " + equipo.nombre);
+      console.log("Llevo de goles a favor: " + equipo.golesFavor);
+      console.log("Llevo de goles en contra: " + equipo.golesContra);
+      console.log("Mis puntos son: " + equipo.puntos);
+    }
   }
 }

@@ -12,7 +12,7 @@ import { Partido } from "../core/modelo/Partido";
   templateUrl: "home.page.html",
   styleUrls: ["home.page.scss"],
 })
-export class HomePage implements OnInit {
+export class HomePage {
   visible: boolean = true;
   numeroJornada: number = 1;
   limiteDeJornadas = 18;
@@ -21,13 +21,6 @@ export class HomePage implements OnInit {
   resultado;
   listaJornadas: Map<number, Jornada> = new Map<number, Jornada>();
 
-  ngOnInit(): void {
-    this.jornada = new Jornada(this.servidorFecha, this.equiposFutbol);
-    this.resultado = this.jornada.generarJornada(
-      this.numeroJornada,
-      this.limiteDeJornadas
-    );
-  }
   constructor(
     private aler: AlertController,
     private route: Router,
@@ -39,6 +32,7 @@ export class HomePage implements OnInit {
       this.numeroJornada,
       this.limiteDeJornadas
     );
+    this.jornada.mostrarResultadosJornada();
   }
 
   jornadaSiguiente() {
@@ -53,6 +47,7 @@ export class HomePage implements OnInit {
         this.resultado = this.jornada.listaPartidos;
       }
     }
+    this.jornada.mostrarResultadosJornada();
   }
   jornadaNuevaConfiguracion() {
     let nombresEquipoA = this.jornada.nombresEquipoA;

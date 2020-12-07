@@ -11,7 +11,7 @@ export class Equipo {
   public get puntos() {
     return this._puntos;
   }
-  public set puntos(numero: number) {
+  public aumentarPuntos(numero: number) {
     this._puntos += numero;
   }
   public get golesFavor() {
