@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NavigationExtras, Router } from "@angular/router";
 import { AlertController } from "@ionic/angular";
+import { Clasificacion } from "../core/modelo/Clasificacion";
 import { Cronologia } from "../core/modelo/Cronologia";
 import { EquiposFutbolService } from "../core/modelo/equipos/equipos-futbol.service";
 import { FechaService } from "../core/modelo/Fecha/fecha.service";
@@ -20,7 +21,7 @@ export class HomePage {
   jornada: Jornada;
   resultado;
   listaJornadas: Map<number, Jornada> = new Map<number, Jornada>();
-
+  clasificacion: Clasificacion;
   constructor(
     private aler: AlertController,
     private route: Router,
@@ -28,6 +29,7 @@ export class HomePage {
     private equiposFutbol: EquiposFutbolService
   ) {
     this.jornada = new Jornada(this.servidorFecha, this.equiposFutbol);
+    this.clasificacion = new Clasificacion(this.equiposFutbol);
     this.resultado = this.jornada.generarJornada(
       this.numeroJornada,
       this.limiteDeJornadas
@@ -53,6 +55,7 @@ export class HomePage {
     let nombresEquipoA = this.jornada.nombresEquipoA;
     let nombresEquipoB = this.jornada.nombresEquipoB;
     this.jornada = new Jornada(this.servidorFecha, this.equiposFutbol);
+    this.clasificacion = new Clasificacion(this.equiposFutbol);
     this.jornada.nombresEquipoA = nombresEquipoA;
     this.jornada.nombresEquipoB = nombresEquipoB;
     this.resultado = this.jornada.generarJornada(
@@ -79,5 +82,9 @@ export class HomePage {
   }
   obtenerFechaConcreta() {
     return this.jornada.obtenerFecha(this.numeroJornada - 1).toString();
+  }
+  cambiarClasificacion() {
+    this.visible = false;
+    this.clasificacion = new Clasificacion(this.equiposFutbol);
   }
 }

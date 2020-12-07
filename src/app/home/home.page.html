@@ -5,7 +5,7 @@
         <ion-icon name="football-outline"></ion-icon>
         JORNADA
       </ion-segment-button>
-      <ion-segment-button value="clasificacion" (click)="visible=false">
+      <ion-segment-button value="clasificacion" (click)="cambiarClasificacion()">
         <ion-icon name="trophy-outline"></ion-icon>
         CLASIFICACION
       </ion-segment-button>
@@ -47,7 +47,13 @@
       <ion-col class="tabla">GolesContra</ion-col>
     </ion-row>
 
-
+    <ion-row *ngFor="let equipo of clasificacion.listaEquiposArray">
+      <ion-col class="tabla">{{equipo.posicion}}</ion-col>
+      <ion-col class="tabla">{{equipo.nombre}}</ion-col>
+      <ion-col class="tabla">{{equipo.puntos}}</ion-col>
+      <ion-col class="tabla">{{equipo.golesFavor}}</ion-col>
+      <ion-col class="tabla">{{equipo.golesContra}}</ion-col>
+    </ion-row>
 
 
 

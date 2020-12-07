@@ -58,7 +58,8 @@ export class Jornada {
     for (let i = 0; i < veces; i++) {
       minutos.push(this.generarNumeroAleatorio(0, 91));
     }
-    return minutos.sort();
+
+    return minutos.sort((a, b) => a - b);
   }
   public get listaPartidos() {
     return this._listaPartidos;
@@ -88,19 +89,6 @@ export class Jornada {
     let minutosGolesVisitante: Array<number> = this.generarMinutosAleatorios(
       golesVisitante
     );
-    console.log("EMPEZAMOS EL PARTIDO");
-    console.log(
-      "Este partido es de: " +
-        equipoLocal.nombre +
-        " vs " +
-        equipoVisitante.nombre
-    );
-    console.log("Goles equipo Local: " + equipoLocal.golesFavor);
-    console.log("Goles contra equipo Local: " + equipoLocal.golesContra);
-    console.log("Goles equipo Visitante: " + equipoVisitante.golesFavor);
-    console.log(
-      "Goles contra equipo Visitante: " + equipoVisitante.golesContra
-    );
     let partido: Partido = new Partido(
       equipoLocal,
       equipoVisitante,
@@ -129,10 +117,6 @@ export class Jornada {
   public mostrarResultadosJornada() {
     for (let i = 1; i <= this.equiposFutbol.listaEquipos.size; i++) {
       let equipo: Equipo = this.equiposFutbol.listaEquipos.get(i);
-      console.log("Soy el equipo: " + equipo.nombre);
-      console.log("Llevo de goles a favor: " + equipo.golesFavor);
-      console.log("Llevo de goles en contra: " + equipo.golesContra);
-      console.log("Mis puntos son: " + equipo.puntos);
     }
   }
 }
