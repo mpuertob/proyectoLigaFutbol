@@ -34,7 +34,6 @@ export class HomePage {
       this.numeroJornada,
       this.limiteDeJornadas
     );
-    this.jornada.mostrarResultadosJornada();
   }
 
   jornadaSiguiente() {
@@ -50,7 +49,6 @@ export class HomePage {
       }
     }
     this.cambiarClasificacion();
-    this.jornada.mostrarResultadosJornada();
   }
   jornadaNuevaConfiguracion() {
     let nombresEquipoA = this.jornada.nombresEquipoA;

@@ -15,7 +15,6 @@ export class Jornada {
     private servidorFecha: FechaService,
     private equiposFutbol: EquiposFutbolService
   ) {
-    this.servidorFecha = new FechaService();
     this.fechas = servidorFecha.fechas;
     this._nombresEquipoA = this.equiposFutbol.nombresEquipoA;
     this._nombresEquipoB = this.equiposFutbol.nombresEquipoB;
@@ -39,7 +38,7 @@ export class Jornada {
     this.cuadrarSiguienteJornada();
     return this._listaPartidos;
   }
-  public cuadrarSiguienteJornada() {
+  private cuadrarSiguienteJornada() {
     let primerEquipoA = this._nombresEquipoA[0];
     let ultimoEquipoB = this._nombresEquipoB[this._nombresEquipoB.length - 1];
     this._nombresEquipoA.shift();
@@ -47,13 +46,13 @@ export class Jornada {
     this._nombresEquipoA.push(ultimoEquipoB);
     this._nombresEquipoB.unshift(primerEquipoA);
   }
-  public generarNumeroAleatorio(maximo: number, minimo: number): number {
+  private generarNumeroAleatorio(maximo: number, minimo: number): number {
     let aleatorio: number = Number.parseInt(
       (Math.random() * (maximo - minimo) + minimo).toFixed(0)
     );
     return aleatorio;
   }
-  public generarMinutosAleatorios(veces: number): Array<number> {
+  private generarMinutosAleatorios(veces: number): Array<number> {
     let minutos: Array<number> = [];
     for (let i = 0; i < veces; i++) {
       minutos.push(this.generarNumeroAleatorio(0, 91));
@@ -78,14 +77,12 @@ export class Jornada {
     let golesVisitante: number = this.generarNumeroAleatorio(0, 7);
     equipoLocal.aumentarGolesContra(golesVisitante);
     equipoVisitante.aumentarGolesFavor(golesVisitante);
-    if (golesLocal > golesVisitante) {
-      equipoLocal.aumentarPuntos(3);
-    } else if (golesLocal == golesVisitante) {
-      equipoLocal.aumentarPuntos(1);
-      equipoVisitante.aumentarPuntos(1);
-    } else if (golesVisitante > golesLocal) {
-      equipoVisitante.aumentarPuntos(3);
-    }
+    this.establecerPuntuacion(
+      golesLocal,
+      golesVisitante,
+      equipoLocal,
+      equipoVisitante
+    );
     let minutosGolesVisitante: Array<number> = this.generarMinutosAleatorios(
       golesVisitante
     );
@@ -98,6 +95,21 @@ export class Jornada {
       minutosGolesVisitante
     );
     return partido;
+  }
+  private establecerPuntuacion(
+    golesLocal: number,
+    golesVisitante: number,
+    equipoLocal: Equipo,
+    equipoVisitante: Equipo
+  ) {
+    if (golesLocal > golesVisitante) {
+      equipoLocal.aumentarPuntos(3);
+    } else if (golesLocal == golesVisitante) {
+      equipoLocal.aumentarPuntos(1);
+      equipoVisitante.aumentarPuntos(1);
+    } else if (golesVisitante > golesLocal) {
+      equipoVisitante.aumentarPuntos(3);
+    }
   }
   public get nombresEquipoA() {
     return this._nombresEquipoA;
@@ -113,10 +125,5 @@ export class Jornada {
   }
   public obtenerFecha(numero: number): Fecha {
     return this.fechas[numero];
-  }
-  public mostrarResultadosJornada() {
-    for (let i = 1; i <= this.equiposFutbol.listaEquipos.size; i++) {
-      let equipo: Equipo = this.equiposFutbol.listaEquipos.get(i);
-    }
   }
 }

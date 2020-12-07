@@ -10,13 +10,13 @@ export class Clasificacion {
     this.ordenarEquipos();
     this.establecerPosicionesEquipos();
   }
-  rellenarArrayEquipos() {
+  private rellenarArrayEquipos() {
     for (let i = 1; i <= this.listaEquipos.size; i++) {
       let equipo = this.listaEquipos.get(i);
       this.listaEquiposArray.push(equipo);
     }
   }
-  ordenarEquipos() {
+  private ordenarEquipos() {
     this.listaEquiposArray = this.listaEquiposArray.sort(function (a, b) {
       if (b.puntos == a.puntos) {
         return b.golesFavor - a.golesFavor;
