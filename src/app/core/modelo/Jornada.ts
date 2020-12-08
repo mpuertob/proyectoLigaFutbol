@@ -41,10 +41,14 @@ export class Jornada {
   private cuadrarSiguienteJornada() {
     let primerEquipoA = this._nombresEquipoA[0];
     let ultimoEquipoB = this._nombresEquipoB[this._nombresEquipoB.length - 1];
+    console.log(this._nombresEquipoA);
+    console.log(this._nombresEquipoB);
     this._nombresEquipoA.shift();
     this._nombresEquipoB.pop();
     this._nombresEquipoA.push(ultimoEquipoB);
     this._nombresEquipoB.unshift(primerEquipoA);
+    console.log(this._nombresEquipoA);
+    console.log(this._nombresEquipoB);
   }
   private generarNumeroAleatorio(maximo: number, minimo: number): number {
     let aleatorio: number = Number.parseInt(

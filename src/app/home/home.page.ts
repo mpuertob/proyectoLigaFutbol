@@ -29,6 +29,7 @@ export class HomePage {
     private equiposFutbol: EquiposFutbolService
   ) {
     this.jornada = new Jornada(this.servidorFecha, this.equiposFutbol);
+    this.clasificacion = new Clasificacion(this.equiposFutbol);
     this.resultado = this.jornada.generarJornada(
       this.numeroJornada,
       this.limiteDeJornadas
