@@ -16,10 +16,10 @@
 
 <ion-content [fullscreen]="true" class="ion-text-center">
   <ion-content *ngIf="visible">
-    <ion-label class="titulo">Jornada número: {{this.numeroJornada}}. Fecha: {{obtenerFechaConcreta()}}</ion-label>
-    <ion-label *ngIf="this.numeroJornada<=(this.limiteDeJornadas/2)" class="titulo"> Partidos de Ida:</ion-label>
-    <ion-label *ngIf="this.numeroJornada>(this.limiteDeJornadas/2)" class="titulo"> Partidos de Vuelta:</ion-label>
-    <ion-card class="partido" *ngFor="let partido of resultado" (click)="mostrarCronologiaDatos(partido)">
+    <ion-label class="titulo">Jornada número: {{liga.numeroJornada}}. Fecha: {{obtenerFechaConcreta()}}</ion-label>
+    <ion-label *ngIf="liga.numeroJornada<=(liga.limiteDeJornadas/2)" class="titulo"> Partidos de Ida:</ion-label>
+    <ion-label *ngIf="liga.numeroJornada>(liga.limiteDeJornadas/2)" class="titulo"> Partidos de Vuelta:</ion-label>
+    <ion-card class="partido" *ngFor="let partido of liga.resultado" (click)="mostrarCronologiaDatos(partido)">
       <ion-card-header>
         <ion-label>{{partido.local}} : {{partido.visitante}}</ion-label>
       </ion-card-header>
@@ -60,7 +60,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row *ngFor="let equipo of clasificacion.listaEquiposArray">
+    <ion-row *ngFor="let equipo of liga.clasificacion.listaEquiposArray">
       <ion-col class="tabla">{{equipo.posicion}}</ion-col>
       <ion-col class="tabla">{{equipo.nombre}}</ion-col>
       <ion-col class="tabla">{{equipo.puntos}}</ion-col>
@@ -70,11 +70,12 @@
 
 
     <ion-label class="final">
-      <ion-icon name="trophy-sharp"></ion-icon>Ganador de esta jornada: {{clasificacion.listaEquiposArray[0].nombre}}
+      <ion-icon name="trophy-sharp"></ion-icon>Ganador de esta jornada:
+      {{liga.clasificacion.listaEquiposArray[0].nombre}}
     </ion-label>
-    <ion-label *ngIf="isJornadaFinal()" class="final">
+    <ion-label *ngIf="liga.isJornadaFinal()" class="final">
       <ion-icon name="trophy-sharp"></ion-icon>
-      Ganador Final de la Liga: {{clasificacion.listaEquiposArray[0].nombre}}
+      Ganador Final de la Liga: {{liga.clasificacion.listaEquiposArray[0].nombre}}
     </ion-label>
   </ion-content>
   <ion-footer *ngIf="visible">
