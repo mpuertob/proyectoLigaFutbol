@@ -45,7 +45,8 @@ export class Jornada {
     this._nombresEquipoB.pop();
     this._nombresEquipoA.push(ultimoEquipoB);
     this._nombresEquipoB.unshift(primerEquipoA);
-    this.equiposFutbol.changeNames(this._nombresEquipoA, this._nombresEquipoB);
+    this.equiposFutbol.changeNames(this._nombresEquipoA,this._nombresEquipoB)
+
   }
   private generarNumeroAleatorio(maximo: number, minimo: number): number {
     let aleatorio: number = Number.parseInt(
