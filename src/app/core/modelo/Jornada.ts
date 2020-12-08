@@ -6,10 +6,10 @@ import { Partido } from "./Partido";
 
 export class Jornada {
   private _listaPartidos: Array<Partido> = [];
-  public _nombresEquipoA: Array<String> = [];
+  private _nombresEquipoA: Array<String> = [];
   private numeroPartidos = 5;
-  public _nombresEquipoB: Array<String> = [];
-  public listaEquipos: Map<Number, Equipo> = new Map<Number, Equipo>();
+  private _nombresEquipoB: Array<String> = [];
+  private _listaEquipos: Map<Number, Equipo> = new Map<Number, Equipo>();
   public fechas: Array<Fecha>;
   constructor(
     private servidorFecha: FechaService,
@@ -18,7 +18,7 @@ export class Jornada {
     this.fechas = servidorFecha.fechas;
     this._nombresEquipoA = this.equiposFutbol._nombresEquipoA;
     this._nombresEquipoB = this.equiposFutbol._nombresEquipoB;
-    this.listaEquipos = this.equiposFutbol.listaEquipos;
+    this._listaEquipos = this.equiposFutbol.listaEquipos;
   }
   public generarJornada(
     numeroJornada: number,
@@ -45,8 +45,7 @@ export class Jornada {
     this._nombresEquipoB.pop();
     this._nombresEquipoA.push(ultimoEquipoB);
     this._nombresEquipoB.unshift(primerEquipoA);
-    this.equiposFutbol.changeNames(this._nombresEquipoA,this._nombresEquipoB)
-
+    this.equiposFutbol.changeNames(this._nombresEquipoA, this._nombresEquipoB);
   }
   private generarNumeroAleatorio(maximo: number, minimo: number): number {
     let aleatorio: number = Number.parseInt(
@@ -127,5 +126,8 @@ export class Jornada {
   }
   public obtenerFecha(numero: number): Fecha {
     return this.fechas[numero];
+  }
+  public get listaEquipos() {
+    return this._listaEquipos;
   }
 }
