@@ -2,9 +2,37 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+.segmentos {
+  background-color: #c8ff9b;
+}
 .tabla {
   border-style: solid;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
   border-width: 1px;
+  background-color: #b0faf6;
+}
+
+.titulo {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  border-style: ridge;
+  border-width: 0.5px;
+  background-color: #fcff62;
+}
+.parteArriba {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #e591ff;
+}
+.final {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 20px;
+  border-style: ridge;
+  border-width: 1px;
+  background-color: #bdff7f;
 }
 :root {
   /** primary **/

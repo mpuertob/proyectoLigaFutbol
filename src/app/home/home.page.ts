@@ -87,4 +87,10 @@ export class HomePage {
   cambiarClasificacion() {
     this.clasificacion = new Clasificacion(this.equiposFutbol);
   }
+  isJornadaFinal() {
+    if (this.numeroJornada == this.limiteDeJornadas) {
+      return true;
+    }
+    return false;
+  }
 }
