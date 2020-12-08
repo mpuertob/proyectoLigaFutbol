@@ -4,7 +4,9 @@ import { EquiposFutbolService } from "./equipos/equipos-futbol.service";
 export class Clasificacion {
   listaEquipos: Map<Number, Equipo>;
   listaEquiposArray: Equipo[] = [];
+
   constructor(private equiposFutbol: EquiposFutbolService) {
+    console.log(this.equiposFutbol.listaEquipos);
     this.listaEquipos = this.equiposFutbol.listaEquipos;
     this.rellenarArrayEquipos();
     this.ordenarEquipos();

@@ -7,30 +7,42 @@ import { Equipo } from "../Equipo";
 export class EquiposFutbolService {
   listaEquipos: Map<Number, Equipo> = new Map<Number, Equipo>();
   numero: number = 0;
-  public nombresEquipoA: Array<String> = [
+  public _nombresEquipoA: Array<String> = [
     "Victorianos",
     "Villa Arriba",
     "Villanos",
     "Chiclanos",
     "Castellanos",
   ];
-  public nombresEquipoB: Array<String> = [
+  public _nombresEquipoB: Array<String> = [
     "Perderianos",
     "Villa Abajo",
     "Tiranos",
     "Rotulianos",
     "Francesanos",
   ];
+
   constructor() {
-    for (let i = 1; i <= this.nombresEquipoA.length; i++) {
-      this.listaEquipos.set(i, new Equipo(this.nombresEquipoA[i - 1]));
+    this.init();
+  }
+
+  changeNames(valueA: Array<String>, valueB: Array<String>) {
+    this._nombresEquipoA = valueA;
+    this._nombresEquipoB = valueB;
+    this.listaEquipos;
+    this.init();
+  }
+
+  private init() {
+    for (let i = 1; i <= this._nombresEquipoA.length; i++) {
+      this.listaEquipos.set(i, new Equipo(this._nombresEquipoA[i - 1]));
       this.numero = i;
     }
-    for (let i = 1; i <= this.nombresEquipoB.length; i++) {
+    for (let i = 1; i <= this._nombresEquipoB.length; i++) {
       this.numero += 1;
       this.listaEquipos.set(
         this.numero,
-        new Equipo(this.nombresEquipoB[i - 1])
+        new Equipo(this._nombresEquipoB[i - 1])
       );
     }
   }
