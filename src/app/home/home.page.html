@@ -37,7 +37,7 @@
   </ion-content>
   <ion-content *ngIf="!visible" class="ion-text-center">
 
-    <ion-label class="titulo">Clasificacion de la Jornada {{this.numeroJornada}}</ion-label>
+    <ion-label class="titulo">Clasificacion de la Última Jornada jugada</ion-label>
 
     <ion-row class="parteArriba">
       <ion-col class="parteArriba">
@@ -77,7 +77,7 @@
       Ganador Final de la Liga: {{clasificacion.listaEquiposArray[0].nombre}}
     </ion-label>
   </ion-content>
-  <ion-footer>
+  <ion-footer *ngIf="visible">
     <ion-item expand="full">
       <ion-button slot="start" size="small" (click)="jornadaAnterior()">
         <ion-icon name="arrow-back-outline"></ion-icon>Anterior
