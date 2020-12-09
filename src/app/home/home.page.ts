@@ -46,7 +46,7 @@ export class HomePage {
     this.route.navigate(["cronologia"], extrasDeNavegacion);
   }
   obtenerFechaConcreta() {
-    this.liga.obtenerFechaConcreta();
+    return this.liga.obtenerFechaConcreta();
   }
   cambiarClasificacion() {
     this.liga.cambiarClasificacion();
